@@ -5,8 +5,11 @@ import type {
   RoomState,
 } from '../types/game';
 
+// In production the backend serves this page, so API calls go to the same
+// address (empty base). Only the dev server needs the separate localhost:8080.
 const BASE_URL =
-  (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? 'http://localhost:8080';
+  (import.meta.env.VITE_API_BASE_URL as string | undefined) ??
+  (import.meta.env.DEV ? 'http://localhost:8080' : '');
 
 /**
  * Error carrying the server's structured body, so a form can show
