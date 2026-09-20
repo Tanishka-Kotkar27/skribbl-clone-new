@@ -1,0 +1,10 @@
+# Keep the build context small and never ship local builds or secrets.
+**/node_modules
+**/dist
+**/target
+**/.env
+**/.env.local
+.git
+.idea
+.vscode
+*.log

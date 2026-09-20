@@ -1,0 +1,42 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: skribbl-backend
+
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3307/skribbl?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:skribbl}
+    password: ${DB_PASSWORD:skribbl}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 20000
+
+  jpa:
+    hibernate:
+      # Phase 2 creates the entities; `update` lets Hibernate build the schema
+      # as we add them. Switch to `validate` before deploying.
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    show-sql: false
+
+# Application-specific configuration. Bound to AppProperties.
+app:
+  # Comma-separated list of origins allowed to call the REST API and open a
+  # WebSocket. In production set CORS_ORIGINS to your deployed frontend URL.
+  cors-origins: ${CORS_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}
+  # Rooms with no players are evicted from memory after this many seconds.
+  room-ttl-seconds: ${ROOM_TTL_SECONDS:900}
+  # Used to build the shareable join link returned by POST /api/rooms.
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+
+logging:
+  level:
+    com.skribbl: DEBUG
+    org.springframework.web.socket: INFO
