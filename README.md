@@ -9,7 +9,7 @@ The interface is branded **Inkling**; the name lives in `frontend/src/components
 **Stack:** React 19 + TypeScript + Vite · Spring Boot 3.5 (Java 21) · MySQL 8 ·
 STOMP over WebSocket
 
-> **Live URL:** https://YOUR-APP.up.railway.app &nbsp;← *replace with your Railway address after deploying*
+> **Live URL:** https://skribbl-clone-new-0nx3.onrender.com &nbsp;← *replace with your Railway address after deploying*
 
 ---
 
